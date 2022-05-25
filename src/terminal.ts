@@ -1,4 +1,4 @@
-import { getText } from "./local";
+import { getText } from "./locale";
 
 var currentInputText = "";
 var previousInputs: string[] = [];
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   input = document.getElementById("terminal-input");
   terminalText = document.getElementById("terminal-text");
   typeText(getText("about", "en"));
+  typeText(getText("helper", "en"));
 });
 
 export function handleInput(kb: KeyboardEvent) {

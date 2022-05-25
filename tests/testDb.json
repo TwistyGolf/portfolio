@@ -1,0 +1,44 @@
+{
+    "formattingTests": {
+        "textEffectTests": [
+            {
+                "test": "<glow></>",
+                "expected": "<span class=\"glow\"></span>"
+            },
+            {
+                "test": "<#ffffff></>",
+                "expected": "<span class=\"\" style=\"color:#ffffff\"></span>"
+            },
+            {
+                "test": "<glow/#ffffff></>",
+                "expected": "<span class=\"glow\" style=\"color:#ffffff\"></span>"
+            }
+        ],
+        "hyperlinkTestsNoAlt": [
+            {
+                "test": "[https://github.com/lewis-savage]",
+                "expected": "<a href=\"https://github.com/lewis-savage\">https://github.com/lewis-savage</a>"
+            },
+            {
+                "test": "[https://bobbyhadz.com/blog/typescript-jest-cannot-use-import-statement-outside-module]",
+                "expected": "<a href=\"https://bobbyhadz.com/blog/typescript-jest-cannot-use-import-statement-outside-module\">https://bobbyhadz.com/blog/typescript-jest-cannot-use-import-statement-outside-module</a>"
+            }
+        ],
+        "hyperlinkTestsWithAlt": [
+            {
+                "test": "[mailto:lewissavage88@gmail.com,lewissavage88@gmail.com]",
+                "expected": "<a href=\"mailto:lewissavage88@gmail.com\">lewissavage88@gmail.com</a>"
+            },
+            {
+                "test": "[whoah,lewissavage8]",
+                "expected": "<a href=\"whoah\">lewissavage8</a>"
+            }
+        ],
+        "nestedTests": [
+            {
+                "test": "<glow>[https://github.com/lewis-savage]</>",
+                "expected": "<span class=\"glow\"><a href=\"https://github.com/lewis-savage\">https://github.com/lewis-savage</a></span>"
+            }
+        ]
+    }
+}

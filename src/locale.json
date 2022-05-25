@@ -13,6 +13,11 @@
             "<glow/#00ff00>2022-present</> Software Developer        - <glow>Snapon Diagnostics</>"
         ]
     },
+    "helper": {
+        "en": [
+            "Try typing 'help' to see some commands"
+        ]
+    },
     "contact": {
         "en": [
             "---Contact---",
