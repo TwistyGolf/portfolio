@@ -1,0 +1,23 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+    },
+
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "plugins": [
+        "you-dont-need-lodash-underscore",
+        "@typescript-eslint"
+    ],
+    "extends" : [
+        "eslint:recommended",
+        "plugin:you-dont-need-lodash-underscore/compatible",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "ignorePatterns": ["*.config.js"]
+}
