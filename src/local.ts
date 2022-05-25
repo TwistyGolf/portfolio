@@ -41,5 +41,6 @@ export function getText(id: string, locale: string): string[] {
 
     ret.push(str);
   }
+  console.log(ret);
   return ret;
 }

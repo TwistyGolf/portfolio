@@ -10,6 +10,7 @@ var terminalText: HTMLElement;
 document.addEventListener("DOMContentLoaded", (e) => {
   input = document.getElementById("terminal-input");
   terminalText = document.getElementById("terminal-text");
+  typeText(getText("about", "en"));
 });
 
 export function handleInput(kb: KeyboardEvent) {

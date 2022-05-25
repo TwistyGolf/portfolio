@@ -1,29 +1,34 @@
 {
     "about": {
         "en": [
+            "---About---",
             "Hi! I'm <glow>Lewis Savage</>, a Software Developer from <#169B62/glow>Ir</><#FFFFFF/glow>ela</><#FF883E/glow>nd</>.",
             "I've had a passion for software development since I was a child"
         ]
     },
     "experience": {
         "en": [
+            "---Experience---",
             "<glow/red>2021-2022</>    Software Developer Intern - <glow>Snapon Diagnostics</>",
             "<glow/#00ff00>2022-present</> Software Developer        - <glow>Snapon Diagnostics</>"
         ]
     },
     "contact": {
         "en": [
+            "---Contact---",
             "<glow/#00ff00>Email:</> [mailto:lewissavage88@gmail.com,lewissavage88@gmail.com]",
             "<glow/#00ff00>Github:</> [https://github.com/lewis-savage]"
         ]
     },
     "education": {
         "en": [
-            "Software Development (BSc Honours) 2018/2022 <#F1AF01/glow>Munster</> <#D90626/glow>Technological</> <#00A2E2/glow>University</>, First Class Honours"
+            "---Education---",
+            "Software Development (BSc Honours) 2018/2022, First Class Honours <#F1AF01/glow>Munster</> <#D90626/glow>Technological</> <#00A2E2/glow>University</>"
         ]
     },
     "help": {
         "en": [
+            "---Help---",
             "<red/glow>help:</> Shows a list of commands",
             "<red/glow>contact:</> Prints out a list of my contact details",
             "<red/glow>about:</> Prints out some info about me",
