@@ -1,0 +1,182 @@
+$background: #222;
+$text-color: white;
+$breakpoints: (phone: 640px, 
+               tablet: 768px, 
+               desktop: 1024px) !default;
+@import url(https://fonts.googleapis.com/css2?family=Fira+Code&display=swap);
+@import './media.scss';
+
+html
+{
+    height: 100%;
+}
+body
+{
+    color: $text-color;
+    font-family: 'Fira Code', monospace;
+    background-color: #111;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 200%;
+}
+
+#header
+{
+    display: flex;
+    padding: .5rem;
+    background-color: #333;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    justify-content: space-between;
+}
+
+#terminal-content
+{
+    padding: .5rem;
+    overflow-y: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 2.5rem;
+
+
+}
+
+#terminal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+#terminal-content::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+#terminal-content::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+/* Handle on hover */
+#terminal-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+#terminal-text
+{
+    display: flex;
+    flex-direction: column;
+}
+#terminal
+{
+    background-color: $background;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+
+    transform: translate(0, -50%);
+    height: 80%;
+    width: 80%;
+    
+    border-radius: .5rem;
+}
+
+@include media("<desktop") {
+    body
+    {
+        background-color: black;
+    }
+    #terminal{
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100%;
+    transform: none;
+    }
+  }
+
+  p{
+      white-space: pre-wrap;
+
+  }
+
+  #terminal-input
+  {
+      white-space: pre;
+  }
+#terminal-input::before
+{
+    content: ">";
+    padding-right: 5px;
+}
+
+#terminal-input::after
+{
+    content: " ";
+    white-space: pre;
+    border-left: 2px solid white;
+    animation: blinker 1s linear infinite;
+}
+
+#faketext
+{
+    position: absolute;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    resize: none;
+}
+a{
+    text-decoration: underline;
+    display: inline;
+    color: inherit;
+}
+#terminal-text
+{
+    p{
+        margin: 0;
+    }
+}
+#header-buttons
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-button
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .1rem;
+    border-radius: 3px;
+    background-color: #222;
+}
+
+.glow
+{
+  text-shadow:1px 1px 4px, 1px 1px 4px ;
+}
+
+.red
+{
+    color: #ff2400;
+}
+
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes typewriter {
+      to{
+          left:100%;
+      }
+  }
