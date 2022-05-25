@@ -27,7 +27,7 @@ afterEach(() => {
 });
 
 test("it loads a localeDb", () => {
-    let t = getText("test1", "en");
+    getText("test1", "en");
     expect(getLocaleDb).toBeCalledTimes(1);
 });
 

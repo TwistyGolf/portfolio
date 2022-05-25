@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "lint": "eslint . --ext .ts",
     "test:coverage": "jest --coverage",
     "build": "webpack --config webpack.production.config.js",
     "serve": "webpack && serve dist"
