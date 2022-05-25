@@ -18,7 +18,7 @@ jobs:
             - name: Install
               run: npm install
             - name: Lint
-              run: npx eslint .\src\*.ts
+              run: npx eslint .\\src\\*.ts
 
             - name: Test
               run: npm run test
