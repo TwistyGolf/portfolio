@@ -157,11 +157,11 @@ export function toggleTerminal() {
     if (terminalWindow.classList.contains("hide")) {
         if (firstOpen) {
             firstOpen = false;
-            typeText(getText("intro", "en", false)).then(() => {
-                typeText(getText("about", "en")).then(() => {
-                    typeText(getText("helper", "en"));
-                });
-            });
+            typeMultiple(
+                getText("intro", "en", false),
+                getText("about", "en"),
+                getText("helper", "en")
+            );
         }
         terminalWindow.classList.remove("hidden");
         setTimeout(() => {
@@ -172,6 +172,13 @@ export function toggleTerminal() {
             terminalWindow.classList.add("hidden");
         }, 200);
         terminalWindow.classList.add("hide");
+    }
+}
+
+async function typeMultiple(...texts: string[][]) {
+    for (let index = 0; index < texts.length; index++) {
+        const element = texts[index];
+        await typeText(element);
     }
 }
 
