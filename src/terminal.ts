@@ -158,7 +158,9 @@ export function toggleTerminal() {
         if (firstOpen) {
             firstOpen = false;
             typeText(getText("intro", "en", false)).then(() => {
-                typeText(getText("helper", "en"));
+                typeText(getText("about", "en")).then(() => {
+                    typeText(getText("helper", "en"));
+                });
             });
         }
         terminalWindow.classList.remove("hidden");

@@ -338,7 +338,6 @@ a{
       {
           justify-content: center;
       }
-      padding-left: .5rem;
   }
   #start-button
   {
@@ -347,6 +346,13 @@ a{
       display: flex;
       justify-content: center;
       align-items: center;
+      padding-left: 1rem;
+      @include media("<desktop")
+          {
+              
+      padding-left: 0rem;
+          }
+
       img
       {
           width: 3.5rem;
