@@ -11,16 +11,14 @@
             "<span class='glow'>| |__) |__  _ __| |_| |_ ___ | |_  ___  ",
             "<span class='glow'>|  ___/ _ \\| '__| __|  _/ _ \\| | |/ _ \\ ",
             "<span class='glow'>| |  | (_) | |  | |_| || (_) | | | (_) |",
-            "<span class='glow'>|_|   \\___/|_|   \\__|_| \\___/|_|_|\\___/ ",
-            ""
+            "<span class='glow'>|_|   \\___/|_|   \\__|_| \\___/|_|_|\\___/ "
         ]
     },
     "about": {
         "en": [
             "---About---",
             "Hi! I'm <glow>Lewis Savage</>, a 22 year old Software Developer from <#169B62/glow>Ir</><#FFFFFF/glow>ela</><#FF883E/glow>nd</>.",
-            "I've had a passion for software development since I was a child",
-            " "
+            "I've had a passion for software development since I was a child"
         ]
     },
     "experience": {
@@ -32,7 +30,7 @@
     },
     "helper": {
         "en": [
-            "Try typing 'help' to see some commands"
+            "Try typing <glow/#00ff00>'help'</> to see some commands (you can press tab to autocomplete commands)"
         ]
     },
     "contact": {
@@ -49,14 +47,87 @@
             "Software Development (BSc Honours) 2018/2022, First Class Honours <#F1AF01/glow>Munster</> <#D90626/glow>Technological</> <#00A2E2/glow>University</>"
         ]
     },
-    "help": {
+    "helpDesc": {
         "en": [
-            "---Help---",
-            "<red/glow>help:</> Shows a list of commands",
-            "<red/glow>contact:</> Prints out a list of my contact details",
-            "<red/glow>about:</> Prints out some info about me",
-            "<red/glow>education:</> Prints out my education information",
-            "<red/glow>experience:</> Displays my previous employment information"
+            "Shows a list of commands"
+        ]
+    },
+    "aboutDesc": {
+        "en": [
+            "Prints out some info about me"
+        ]
+    },
+    "contactDesc": {
+        "en": [
+            "Prints out a list of my contact details"
+        ]
+    },
+    "educationDesc": {
+        "en": [
+            "Prints out my education history"
+        ]
+    },
+    "experienceDesc": {
+        "en": [
+            "Displays my previous and current employment information"
+        ]
+    },
+    "projectsDesc": {
+        "en": [
+            "Prints out a list of my projects"
+        ]
+    },
+    "clearDesc": {
+        "en": [
+            "Clears the terminal"
+        ]
+    },
+    "helpUsage": {
+        "en": [
+            "help [command]"
+        ]
+    },
+    "aboutUsage": {
+        "en": [
+            "about"
+        ]
+    },
+    "contactUsage": {
+        "en": [
+            "contact"
+        ]
+    },
+    "educationUsage": {
+        "en": [
+            "education"
+        ]
+    },
+    "experienceUsage": {
+        "en": [
+            "experience"
+        ]
+    },
+    "projectsUsage": {
+        "en": [
+            "projects [project_number]"
+        ]
+    },
+    "clearUsage": {
+        "en": [
+            "clear"
+        ]
+    },
+    "projects": {
+        "en": [
+            "---Projects---",
+            "1: <glow/red>Terminal Portfoliio</>"
+        ]
+    },
+    "project1": {
+        "en": [
+            "---Terminal Portfolio---",
+            "Description: The portfolio you're currently looking at",
+            "Tech stack: TypeScript, Sass, Webpack, Jest, Github Actions"
         ]
     }
 }

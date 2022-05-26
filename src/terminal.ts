@@ -1,4 +1,5 @@
 import { getText } from "./locale";
+import { commands } from "./commands";
 
 let inputAvailable = true;
 
@@ -38,8 +39,8 @@ export function handleInput(kb: KeyboardEvent) {
         case "Tab":
             kb.preventDefault();
             if (currentInputText == "") break;
-            for (const prop in commandDict) {
-                if (Object.prototype.hasOwnProperty.call(commandDict, prop)) {
+            for (const prop in commands) {
+                if (Object.prototype.hasOwnProperty.call(commands, prop)) {
                     if (prop.startsWith(currentInputText)) {
                         currentInputText = prop;
                     }
@@ -71,7 +72,6 @@ export function handleInput(kb: KeyboardEvent) {
                 break;
             }
             currentInputText = previousInputs[previousInputIndex];
-            console.log(previousInputIndex);
             break;
         default:
             break;
@@ -79,47 +79,38 @@ export function handleInput(kb: KeyboardEvent) {
     input.textContent = currentInputText;
 }
 
-const commandDict: { [key: string]: () => string[] } = {
-    about: () => {
-        return getText("about", "en");
-    },
-    help: () => {
-        return getText("help", "en");
-    },
-    education: () => {
-        return getText("education", "en");
-    },
-    contact: () => {
-        return getText("contact", "en");
-    },
-    experience: () => {
-        return getText("experience", "en");
-    },
-    clear: (): string[] => {
-        terminalText.replaceChildren();
-        return [];
-    },
-    image: (): string[] => {
-        createTextElement(getText("image", "en", false)[0], false);
-        return [];
-    },
-};
-
 function handleCommand(command: string) {
     createTextElement("> " + command);
-    const cmdFunction = commandDict[command.toLocaleLowerCase().trim()];
-    if (cmdFunction != undefined) {
-        typeText(cmdFunction());
+
+    const cmdParts = command.trim().split(" ");
+    const cmd = cmdParts[0].toLocaleLowerCase().trim();
+    const args = cmdParts.splice(1);
+
+    if (cmd in commands) {
+        try {
+            const text = commands[cmd].call(...args);
+            typeText(text);
+        } catch (e) {
+            typeError("Error running command:", e.message);
+        }
     } else {
-        typeText([
-            "<span class='red glow'>I didn't understand '" +
+        typeError(
+            "I didn't understand '" +
                 command +
-                "' try 'help' for a command list</span>",
-        ]);
+                "' try 'help' for a command list"
+        );
     }
 }
 
-function createTextElement(text: string, typed = true) {
+export function typeError(text: string, reason = "") {
+    typeText([`<span class='red glow'>${text}</span> ${reason}`]);
+}
+
+export function clearTerminal() {
+    terminalText.replaceChildren();
+}
+
+export function createTextElement(text: string, typed = true) {
     const el = document.createElement("div");
     const p = document.createElement("p");
     if (typed) {
@@ -143,6 +134,7 @@ export function typeText(text: string[]): Promise<void[]> {
     if (text.length == 0) {
         return;
     }
+    text.push(" ");
     inputAvailable = false;
     const promises: Promise<void>[] = [];
     text.forEach((t, index) => {
@@ -150,7 +142,6 @@ export function typeText(text: string[]): Promise<void[]> {
             new Promise<void>((resolve) => {
                 setTimeout(function () {
                     createTextElement(t);
-                    console.log(index);
 
                     if (index == text.length - 1) {
                         inputAvailable = true;
