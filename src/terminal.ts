@@ -99,6 +99,10 @@ const commandDict: { [key: string]: () => string[] } = {
         terminalText.replaceChildren();
         return [];
     },
+    image: (): string[] => {
+        createTextElement(getText("image", "en", false)[0], false);
+        return [];
+    },
 };
 
 function handleCommand(command: string) {
@@ -115,10 +119,14 @@ function handleCommand(command: string) {
     }
 }
 
-function createTextElement(text: string) {
+function createTextElement(text: string, typed = true) {
     const el = document.createElement("div");
     const p = document.createElement("p");
-    printSentence(p, text);
+    if (typed) {
+        printSentence(p, text);
+    } else {
+        p.textContent = text;
+    }
     el.appendChild(p);
     terminalText.appendChild(el);
     const elem = document.getElementById("terminal-content");
@@ -132,6 +140,9 @@ function scrollBottom(element: HTMLElement) {
 }
 
 export function typeText(text: string[]): Promise<void[]> {
+    if (text.length == 0) {
+        return;
+    }
     inputAvailable = false;
     const promises: Promise<void>[] = [];
     text.forEach((t, index) => {
