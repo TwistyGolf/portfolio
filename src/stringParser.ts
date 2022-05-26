@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 export function parseText(str: string): string {
     // Text Effects
     str = str.replace(/<.*?>/gm, function (match) {
@@ -12,7 +10,10 @@ export function parseText(str: string): string {
                 // Hex codes
                 if (x.includes("#")) {
                     col = x;
-                    parts = _.without(parts, x);
+                    const arrays = [parts, [x]];
+                    parts = arrays.reduce((a, b) =>
+                        a.filter((c) => !b.includes(c))
+                    );
                 }
             });
             if (col == "") {

@@ -15,7 +15,6 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.5.1",
-    "@types/lodash": "^4.14.182",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "copy-webpack-plugin": "^11.0.0",
@@ -37,7 +36,6 @@
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "include-media": "^1.4.10",
-    "lodash": "^4.17.21",
     "style-loader": "^3.3.1"
   }
 }
