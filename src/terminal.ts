@@ -95,9 +95,7 @@ function handleCommand(command: string) {
         }
     } else {
         typeError(
-            "I didn't understand '" +
-                command +
-                "' try 'help' for a command list"
+            "I didn't understand '" + cmd + "' try 'help' for a command list"
         );
     }
 }
