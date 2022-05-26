@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleTerminal();
     });
     const terminalButton = document.querySelector("#terminal-icon>svg");
-    terminalButton.classList.add("hide");
+    terminalButton.classList.add("hidden");
     setTimeout(() => {
-        terminalButton.classList.remove("hide");
+        terminalButton.classList.remove("hidden");
     }, 3000);
     terminalButton.addEventListener("click", () => {
         toggleTerminal();
