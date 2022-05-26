@@ -1,8 +1,12 @@
 import { getLocaleDb } from "./localeLoader";
 import { parseText } from "./stringParser";
 
-export function getText(id: string, locale: string): string[] {
+export function getText(id: string, locale: string, parse = true): string[] {
     const localDbProper = getLocaleDb();
     const t = localDbProper[id][locale];
-    return t.map((x) => parseText(x));
+    if (parse) {
+        return t.map((x) => parseText(x));
+    } else {
+        return t;
+    }
 }

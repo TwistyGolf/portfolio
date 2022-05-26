@@ -1,20 +1,23 @@
 import { getText } from "./locale";
 
+let inputAvailable = true;
+
 let currentInputText = "";
 const previousInputs: string[] = [];
 let previousInputIndex = 0;
 
 let input: HTMLElement;
 let terminalText: HTMLElement;
+let terminalWindow: HTMLElement;
 
 document.addEventListener("DOMContentLoaded", () => {
     input = document.getElementById("terminal-input");
     terminalText = document.getElementById("terminal-text");
-    typeText(getText("about", "en"));
-    typeText(getText("helper", "en"));
+    terminalWindow = document.getElementById("terminal");
 });
 
 export function handleInput(kb: KeyboardEvent) {
+    if (!inputAvailable) return;
     let ctrlHeld = false;
     if (kb.getModifierState("Control")) {
         kb.preventDefault();
@@ -123,13 +126,51 @@ function createTextElement(text: string) {
         scrollBottom(elem);
     }, 100);
 }
+
 function scrollBottom(element: HTMLElement) {
     element.scroll({ top: element.scrollHeight, behavior: "smooth" });
 }
-export function typeText(text: string[]) {
-    text.forEach((t) => {
-        createTextElement(t);
+
+export function typeText(text: string[]): Promise<void[]> {
+    inputAvailable = false;
+    const promises: Promise<void>[] = [];
+    text.forEach((t, index) => {
+        promises.push(
+            new Promise<void>((resolve) => {
+                setTimeout(function () {
+                    createTextElement(t);
+                    console.log(index);
+
+                    if (index == text.length - 1) {
+                        inputAvailable = true;
+                    }
+                    resolve();
+                }, index * 100);
+            })
+        );
     });
+    return Promise.all(promises);
+}
+let firstOpen = true;
+
+export function toggleTerminal() {
+    if (terminalWindow.classList.contains("hide")) {
+        if (firstOpen) {
+            firstOpen = false;
+            typeText(getText("intro", "en", false)).then(() => {
+                typeText(getText("helper", "en"));
+            });
+        }
+        terminalWindow.classList.remove("hidden");
+        setTimeout(() => {
+            terminalWindow.classList.remove("hide");
+        }, 200);
+    } else {
+        setTimeout(() => {
+            terminalWindow.classList.add("hidden");
+        }, 200);
+        terminalWindow.classList.add("hide");
+    }
 }
 
 const printSentence = (element: HTMLElement, sentence: string, speed = 20) => {
