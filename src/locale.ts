@@ -1,13 +1,22 @@
 import { getLocaleDb } from "./localeLoader";
 import { parseText } from "./stringParser";
 
-export function getText(id: string, locale = "en", parse = true): string[] {
+const allowedLocales = ["en"];
+let currentLocale = "en";
+
+export function changeLocale(locale: string) {
+    if (locale in allowedLocales) {
+        currentLocale = locale;
+    }
+}
+
+export function getText(id: string, parse = true): string[] {
     const localDbProper = getLocaleDb();
     let t: string[];
     try {
-        t = localDbProper[id][locale];
+        t = localDbProper[id][currentLocale];
     } catch (e) {
-        console.log(`String ${id} with locale ${locale} doesn't exist`);
+        console.log(`String ${id} with locale ${currentLocale} doesn't exist`);
         throw new Error("String doesn't exist");
     }
     if (parse) {

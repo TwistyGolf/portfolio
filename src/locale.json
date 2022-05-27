@@ -18,7 +18,17 @@
         "en": [
             "---About---",
             "Hi! I'm <glow>Lewis Savage</>, a 22 year old Software Developer from <#169B62/glow>Ir</><#FFFFFF/glow>ela</><#FF883E/glow>nd</>.",
-            "I've had a passion for software development since I was a child"
+            " ",
+            "I've had a passion for software development since I was a child, making calculators to show my parents or",
+            "<glow/#5b8731>Minecraft</> mods to show my friends.",
+            " ",
+            "Since then I've developed my skills through self learning and my college education.",
+            "With those skills I landed a position at <glow/red>Snapon Diagnostics</> after a 6 month internship.",
+            " ",
+            "I have high level experience in a wide range of fields, such as web, game, and application development",
+            " ",
+            "My language of choice is <glow/#953DAC>C#</>, but I'm proficient in the majority of common languages",
+            "such as <glow/#F7DF1E>JavaScript</><glow> & </><glow/#007ACC>TypeScript</>, <glow/#387AB1>Pyt</><glow/#FFD94A>hon</>, <glow/#EB2024>Ja</><glow/#0C8AC6>va</>, <glow/#2CB7F6>Dart & Flutter</> and <glow/#649AD2>C</>"
         ]
     },
     "experience": {
@@ -82,6 +92,11 @@
             "Clears the terminal"
         ]
     },
+    "skillsDesc": {
+        "en": [
+            "Prints a list of my skills with a rating for each"
+        ]
+    },
     "helpUsage": {
         "en": [
             "help [command]"
@@ -117,6 +132,11 @@
             "clear"
         ]
     },
+    "skillsUsage": {
+        "en": [
+            "skills"
+        ]
+    },
     "projects": {
         "en": [
             "---Projects---",
@@ -127,7 +147,8 @@
         "en": [
             "---Terminal Portfolio---",
             "Description: The portfolio you're currently looking at",
-            "Tech stack: TypeScript, Sass, Webpack, Jest, Github Actions"
+            "Tech stack: <glow/#007ACC>TypeScript</>, <glow/#CC6698>Sass</>, <glow/#8ED5FA>Webpack</>, <glow/#C63D14>Jest</>, <glow/#2088FF>Github Actions</>",
+            "Link: <glow>[https://github.com/lewis-savage/portfolio]</>"
         ]
     }
 }

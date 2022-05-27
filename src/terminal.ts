@@ -88,8 +88,7 @@ function handleCommand(command: string) {
 
     if (cmd in commands) {
         try {
-            const text = commands[cmd].call(...args);
-            typeText(text);
+            commands[cmd].call(...args);
         } catch (e) {
             typeError("Error running command:", e.message);
         }
@@ -111,11 +110,13 @@ export function clearTerminal() {
 export function createTextElement(text: string, typed = true) {
     const el = document.createElement("div");
     const p = document.createElement("p");
+
     if (typed) {
         printSentence(p, text);
     } else {
         p.textContent = text;
     }
+
     el.appendChild(p);
     terminalText.appendChild(el);
     const elem = document.getElementById("terminal-content");
@@ -158,9 +159,9 @@ export function toggleTerminal() {
         if (firstOpen) {
             firstOpen = false;
             typeMultiple(
-                getText("intro", "en", false),
-                getText("about", "en"),
-                getText("helper", "en")
+                getText("intro", false),
+                getText("about"),
+                getText("helper")
             );
         }
         terminalWindow.classList.remove("hidden");

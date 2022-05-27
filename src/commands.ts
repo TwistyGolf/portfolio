@@ -1,6 +1,8 @@
 import { getText } from "./locale";
 import { parseText } from "./stringParser";
-import { clearTerminal, typeError } from "./terminal";
+import { skills } from "./skills";
+
+import { clearTerminal, typeError, typeText } from "./terminal";
 
 interface CommandDictSignature {
     [key: string]: Command;
@@ -9,10 +11,10 @@ interface CommandDictSignature {
 class Command {
     name: string;
     hidden: boolean;
-    handler: (...args: string[]) => string[];
+    handler: (...args: string[]) => void;
     constructor(
         name: string,
-        handler: (...args: string[]) => string[],
+        handler: (...args: string[]) => void,
         hidden = false
     ) {
         this.name = name;
@@ -22,11 +24,11 @@ class Command {
     call(...args: string[]) {
         return this.handler(...args);
     }
-    description(locale = "en") {
-        return getText(this.name + "Desc", locale);
+    description() {
+        return getText(this.name + "Desc");
     }
-    usage(locale = "en") {
-        return getText(this.name + "Usage", locale, false);
+    usage() {
+        return getText(this.name + "Usage", false);
     }
 }
 
@@ -38,13 +40,14 @@ export const commands: CommandDictSignature = {
     experience: new Command("experience", experienceHandler),
     projects: new Command("projects", projectsHandler),
     clear: new Command("clear", clearHandler),
+    skills: new Command("skills", skillsHandler),
 };
 
-function aboutHandler(): string[] {
-    return getText("about", "en");
+function aboutHandler() {
+    typeText(getText("about"));
 }
 
-function helpHandler(...args: string[]): string[] {
+function helpHandler(...args: string[]) {
     if (args.length == 0) {
         const lines: string[] = [];
         for (const command in commands) {
@@ -57,44 +60,53 @@ function helpHandler(...args: string[]): string[] {
                 )
             );
         }
-        return lines;
+        typeText(lines);
     } else {
         const command = args[0].trim().toLocaleLowerCase();
         if (command in commands) {
-            return [`Usage: ${commands[command].usage()}`];
+            typeText([`Usage: ${commands[command].usage()}`]);
         } else {
             typeError(`Command '${command}' doesn't exist`);
-            return [];
         }
     }
 }
 
 function educationHandler() {
-    return getText("education", "en");
+    typeText(getText("education"));
 }
 
 function contactHandler() {
-    return getText("contact", "en");
+    typeText(getText("contact"));
 }
 
-function clearHandler(): string[] {
+function clearHandler() {
     clearTerminal();
-    return [];
 }
 
 function experienceHandler() {
-    return getText("experience", "en");
+    typeText(getText("experience"));
+}
+
+function skillsHandler() {
+    const maxLength = Math.max(...skills.map((x) => x.name.length)) + 1;
+    const lines: string[] = [];
+    skills.forEach((x) => {
+        let line = x.name;
+        line += " ".repeat(maxLength - line.length);
+        line += x.getRatingString();
+        lines.push(line);
+    });
+    typeText(lines);
 }
 
 function projectsHandler(...args: string[]) {
     if (args.length == 0) {
-        return getText("projects", "en");
+        typeText(getText("projects"));
     } else {
         try {
-            return getText("project" + args[0], "en");
+            typeText(getText("project" + args[0]));
         } catch {
             typeError("No project with that ID");
-            return [];
         }
     }
 }

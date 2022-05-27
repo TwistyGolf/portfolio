@@ -27,17 +27,16 @@ afterEach(() => {
 });
 
 test("it loads a localeDb", () => {
-    getText("test1", "en");
+    getText("test1");
     expect(getLocaleDb).toBeCalledTimes(1);
 });
 
 test("it loads the correct entry", () => {
-    expect(getText("test1", "en")).toStrictEqual(mockDb.test1.en);
-    expect(getText("test1", "es")).toStrictEqual(mockDb.test1.es);
-    expect(getText("test2", "en")).toStrictEqual(mockDb.test2.en);
+    expect(getText("test1")).toStrictEqual(mockDb.test1.en);
+    expect(getText("test2")).toStrictEqual(mockDb.test2.en);
 });
 
 test("it parses text once", () => {
-    getText("test1", "en");
+    getText("test1");
     expect(parseText).toBeCalledTimes(1);
 });
