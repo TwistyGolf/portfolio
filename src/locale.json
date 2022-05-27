@@ -27,8 +27,8 @@
             " ",
             "I have high level experience in a wide range of fields, such as web, game, and application development",
             " ",
-            "My language of choice is <glow/#953DAC>C#</>, but I'm proficient in the majority of common languages",
-            "such as <glow/#F7DF1E>JavaScript</><glow> & </><glow/#007ACC>TypeScript</>, <glow/#387AB1>Pyt</><glow/#FFD94A>hon</>, <glow/#EB2024>Ja</><glow/#0C8AC6>va</>, <glow/#2CB7F6>Dart & Flutter</> and <glow/#649AD2>C</>"
+            "My language of choice is $csharp$, but I'm proficient in the majority of common languages",
+            "such as $js$ & $ts$, $python$, $java$, $dart$ & $flutter$, and $c$"
         ]
     },
     "experience": {
@@ -135,20 +135,6 @@
     "skillsUsage": {
         "en": [
             "skills"
-        ]
-    },
-    "projects": {
-        "en": [
-            "---Projects---",
-            "1: <glow/red>Terminal Portfoliio</>"
-        ]
-    },
-    "project1": {
-        "en": [
-            "---Terminal Portfolio---",
-            "Description: The portfolio you're currently looking at",
-            "Tech stack: <glow/#007ACC>TypeScript</>, <glow/#CC6698>Sass</>, <glow/#8ED5FA>Webpack</>, <glow/#C63D14>Jest</>, <glow/#2088FF>Github Actions</>",
-            "Link: <glow>[https://github.com/lewis-savage/portfolio]</>"
         ]
     }
 }

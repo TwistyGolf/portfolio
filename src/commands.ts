@@ -2,7 +2,8 @@ import { getText } from "./locale";
 import { parseText } from "./stringParser";
 import { skills } from "./skills";
 
-import { clearTerminal, typeError, typeText } from "./terminal";
+import { bindCallback, clearTerminal, typeError, typeText } from "./terminal";
+import { projects } from "./projects";
 
 interface CommandDictSignature {
     [key: string]: Command;
@@ -99,14 +100,34 @@ function skillsHandler() {
     typeText(lines);
 }
 
-function projectsHandler(...args: string[]) {
+async function projectsHandler(...args: string[]) {
     if (args.length == 0) {
-        typeText(getText("projects"));
-    } else {
-        try {
-            typeText(getText("project" + args[0]));
-        } catch {
-            typeError("No project with that ID");
+        bindCallback((x) => {
+            showProject(x);
+        });
+        const lines: string[] = [];
+        lines.push("---Projects---");
+        for (let index = 0; index < projects.length; index++) {
+            const element = projects[index];
+            lines.push(parseText(`${index + 1}: <glow/red>${element.name}</>`));
         }
+        lines.push(" ");
+        lines.push("Enter a number between 1 and " + projects.length);
+        typeText(lines);
+    } else {
+        showProject(args[0]);
+    }
+}
+
+function showProject(indexString: string) {
+    try {
+        const index = parseInt(indexString) - 1;
+        if (index >= projects.length) {
+            throw new Error("Out of bounds");
+        } else {
+            typeText(projects[index].getFullText());
+        }
+    } catch {
+        typeError("No project with that ID");
     }
 }
