@@ -2,17 +2,21 @@ import { getText } from "./locale";
 import { parseText } from "./stringParser";
 import { skills } from "./skills";
 
-import { bindCallback, clearTerminal, typeError, typeText } from "./terminal";
+import {
+    bindCallback,
+    clearTerminal,
+    createTextElement,
+    typeError,
+    typeText,
+} from "./terminal";
 import { projects } from "./projects";
-
-interface CommandDictSignature {
-    [key: string]: Command;
-}
+import { IDictonary } from "./interfaces";
 
 class Command {
     name: string;
     hidden: boolean;
     handler: (...args: string[]) => void;
+
     constructor(
         name: string,
         handler: (...args: string[]) => void,
@@ -22,18 +26,21 @@ class Command {
         this.handler = handler;
         this.hidden = hidden;
     }
+
     call(...args: string[]) {
         return this.handler(...args);
     }
+
     description() {
         return getText(this.name + "Desc");
     }
+
     usage() {
         return getText(this.name + "Usage", false);
     }
 }
 
-export const commands: CommandDictSignature = {
+export const commands: IDictonary<Command> = {
     about: new Command("about", aboutHandler),
     help: new Command("help", helpHandler),
     contact: new Command("contact", contactHandler),
@@ -42,6 +49,7 @@ export const commands: CommandDictSignature = {
     projects: new Command("projects", projectsHandler),
     clear: new Command("clear", clearHandler),
     skills: new Command("skills", skillsHandler),
+    image: new Command("image", imageHandler, true),
 };
 
 function aboutHandler() {
@@ -103,25 +111,37 @@ function skillsHandler() {
 async function projectsHandler(...args: string[]) {
     if (args.length == 0) {
         bindCallback((x) => {
-            showProject(x);
+            showProject(...x);
         });
-        const lines: string[] = [];
-        lines.push("---Projects---");
-        for (let index = 0; index < projects.length; index++) {
-            const element = projects[index];
-            lines.push(parseText(`${index + 1}: <glow/red>${element.name}</>`));
-        }
-        lines.push(" ");
-        lines.push("Enter a number between 1 and " + projects.length);
-        typeText(lines);
+        showExistingProjects();
     } else {
-        showProject(args[0]);
+        showProject(...args);
     }
 }
 
-function showProject(indexString: string) {
+function showExistingProjects() {
+    const lines: string[] = [];
+    lines.push("---Projects---");
+    for (let index = 0; index < projects.length; index++) {
+        const element = projects[index];
+        lines.push(parseText(`${index + 1}: <glow/red>${element.name}</>`));
+    }
+    lines.push(" ");
+    lines.push("Enter a number between 1 and " + projects.length);
+    typeText(lines);
+}
+
+function showProject(...args: string[]) {
+    // Allows typing "projects 1", after prompt
+    let proj = "";
+    if (args.length == 1) {
+        proj = args[0];
+    } else {
+        proj = args[1];
+    }
+
     try {
-        const index = parseInt(indexString) - 1;
+        const index = parseInt(proj) - 1;
         if (index >= projects.length) {
             throw new Error("Out of bounds");
         } else {
@@ -130,4 +150,8 @@ function showProject(indexString: string) {
     } catch {
         typeError("No project with that ID");
     }
+}
+
+function imageHandler() {
+    createTextElement(getText("image")[0], false);
 }

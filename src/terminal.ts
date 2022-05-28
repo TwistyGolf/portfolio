@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     terminalWindow = document.getElementById("terminal");
 });
 
-let currentCallback: (a: string) => void;
+let currentCallback: (a: string[]) => void;
 
-export function bindCallback(cb: (a: string) => void) {
+export function bindCallback(cb: (a: string[]) => void) {
     currentCallback = cb;
 }
 
@@ -87,12 +87,12 @@ export function handleInput(kb: KeyboardEvent) {
 
 function handleCommand(command: string) {
     createTextElement("> " + command);
+    const cmdParts = command.trim().split(" ");
     if (currentCallback != null) {
-        currentCallback(command);
+        currentCallback(cmdParts);
         currentCallback = null;
         return;
     }
-    const cmdParts = command.trim().split(" ");
     const cmd = cmdParts[0].toLocaleLowerCase().trim();
     const args = cmdParts.splice(1);
 
