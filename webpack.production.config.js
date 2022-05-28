@@ -4,7 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/ts/index.ts',
   mode: 'production',
   module: {
     rules: [
@@ -25,7 +25,7 @@ module.exports = {
   },  
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/pages/index.html'
     }),
     new ESLintPlugin(),
     new CopyWebpackPlugin({

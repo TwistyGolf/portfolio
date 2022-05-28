@@ -1,4 +1,4 @@
-import "./style.scss";
+import "../styles/style.scss";
 import { handleInput, toggleTerminal } from "./terminal";
 
 document.addEventListener("keydown", (e) => {

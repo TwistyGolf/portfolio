@@ -1,10 +1,10 @@
-import { localeSignature } from "../src/localeLoader";
-import { getLocaleDb } from "../src/localeLoader";
-import { getText } from "../src/locale";
-import { parseText } from "../src/stringParser";
+import { localeSignature } from "../src/ts/localeLoader";
+import { getLocaleDb } from "../src/ts/localeLoader";
+import { getText } from "../src/ts/locale";
+import { parseText } from "../src/ts/stringParser";
 
-jest.mock("../src/localeLoader");
-jest.mock("../src/stringParser");
+jest.mock("../src/ts/localeLoader");
+jest.mock("../src/ts/stringParser");
 
 const mockDb = {
     test1: {
