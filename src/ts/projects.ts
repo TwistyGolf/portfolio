@@ -47,4 +47,10 @@ export const projects = [
         "https://github.com/lewis-savage/portfolio",
         ["ts", "sass", "webpack", "jest", "ghactions"]
     ),
+    new Project(
+        "Advent Of Code 2022",
+        "My Solutions for Advent of Code 2022, written in C#",
+        "https://github.com/lewis-savage/AdventOfCode2022",
+        ["csharp"]
+    ),
 ];
